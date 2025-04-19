@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, Legend } from "recharts";
 import { FaUtensils, FaUsers, FaChartBar, FaCog, FaChartPie, FaTruck, FaShoppingCart } from "react-icons/fa";
 
+
 const data = [
   { name: "Jan", orders: 1000, revenue: 4000, chefs: 50, activeUsers: 300 },
   { name: "Feb", orders: 2000, revenue: 5000, chefs: 55, activeUsers: 350 },
@@ -19,7 +20,7 @@ const orders = [
 ];
 
 const Comp8 = () => {
-  const [activeTab, setActiveTab] = useState("overview" ,"settings");  // Set default to "settings" for testing
+  const [activeTab, setActiveTab] = useState("overview" );  // Set default to "settings" for testing
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [activeDetails, setActiveDetails] = React.useState(null);//delievry partner wala
   const [isModalOpen, setIsModalOpen] = useState(false); // Add your modal state here

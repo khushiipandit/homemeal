@@ -6,7 +6,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isTransparentPage = ['/', '/process'].includes(location.pathname); // Removed '/dashboard' from transparent pages
+  const isTransparentPage = ['/', '/process', '/about'].includes(location.pathname); // Removed '/dashboard' from transparent pages
   const navRef = useRef(null);
 
   useEffect(() => {
