@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, Legend } from "recharts";
 import { FaUtensils, FaUsers, FaChartBar, FaCog, FaChartPie, FaTruck, FaShoppingCart } from "react-icons/fa";
+import OrdersPage from "./OrdersPage"; // adjust path if OrdersPage.jsx is in a different folder
+import UsersPage from "./UsersPage"; // adjust path if needed
+import HomeChefs from "./HomeChefs"; // ✅ matches the JSX below
+import AdminsPage from "./AdminsPage";
+import AnalyticsPage from "./AnalyticsPage";
+import DeliveryPartnersPage from "./DeliveryPartnersPage";
+import SettingsPage from "./SettingsPage";
+
 
 
 const data = [
@@ -41,6 +49,12 @@ const Comp8 = () => {
   const handleTimeframeChange = (newTimeframe) => {//new  ----------------------
     setTimeframe(newTimeframe);
   };
+  const toggleUserStatus = (id) => {
+  // Update the user status logic here
+  console.log(`Toggling status for user ${id}`);
+};
+
+  
   
 
   return (
@@ -174,646 +188,65 @@ const Comp8 = () => {
           </div>
         )}
 
-        {activeTab === "orders" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Orders</h2>
-    {/* Orders Table */}
-    <div className="bg-gray-800 bg-opacity-50 shadow-lg rounded-xl p-5 text-white">
-      <table className="min-w-full bg-gray-900 bg-opacity-50 rounded-md text-white shadow-md">
-        <thead>
-          <tr className="border-b border-gray-700">
-            <th className="py-3 px-4 text-left">Order ID</th>
-            <th className="py-3 px-4 text-left">Customer Name</th>
-            <th className="py-3 px-4 text-left">Order Date</th>
-            <th className="py-3 px-4 text-left">Status</th>
-            <th className="py-3 px-4 text-left">Total Amount</th>
-            <th className="py-3 px-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr
-              key={order.id}
-              className="hover:bg-gray-700 transition duration-200 ease-in-out"
-            >
-              <td className="py-2 px-4 border-t border-gray-700 text-left">{order.id}</td>
-              <td className="py-2 px-4 border-t border-gray-700 text-left">{order.name}</td>
-              <td className="py-2 px-4 border-t border-gray-700 text-left">{order.date}</td>
-              <td
-                className={`py-2 px-4 border-t border-gray-700 text-left ${
-                  order.status === "Completed"
-                    ? "text-green-400"
-                    : order.status === "Pending"
-                    ? "text-yellow-400"
-                    : "text-red-400"
-                }`}
-              >
-                {order.status}
-              </td>
-              <td className="py-2 px-4 border-t border-gray-700 text-left">{order.total}</td>
-              <td className="py-2 px-4 border-t border-gray-700 text-center">
-                <button
-                  className="text-blue-400 hover:text-blue-600"
-                  onClick={() => setSelectedOrder(order)}
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+{activeTab === "orders" && (
+  <OrdersPage
+    orders={orders}
+    selectedOrder={selectedOrder}
+    setSelectedOrder={setSelectedOrder}
+  />
+)}
 
-      {/* Modal for Viewing Order Details */}
-      {selectedOrder && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 backdrop-blur-md flex justify-center items-center">
-          <div className="bg-gray-900 bg-opacity-80 text-white p-8 rounded-xl shadow-2xl w-1/3">
-            <h3 className="text-3xl font-extrabold mb-4 text-gradient from-purple-400 to-blue-500 text-center">
-              Order Details
-            </h3>
-            <div className="text-center space-y-2">
-              <p className="text-lg"><strong>Order ID:</strong> {selectedOrder.id}</p>
-              <p className="text-lg"><strong>Customer Name:</strong> {selectedOrder.name}</p>
-              <p className="text-lg"><strong>Order Date:</strong> {selectedOrder.date}</p>
-              <p className={`text-lg ${selectedOrder.status === "Completed" ? "text-green-400" : selectedOrder.status === "Pending" ? "text-yellow-400" : "text-red-400"}`}>
-                <strong>Status:</strong> {selectedOrder.status}
-              </p>
-              <p className="text-lg"><strong>Total Amount:</strong> {selectedOrder.total}</p>
-              <p className="text-lg"><strong>Ordered Items:</strong> {selectedOrder.items.join(", ")}</p>
-              <p className="text-lg"><strong>Dropping Point:</strong> {selectedOrder.dropPoint}</p>
-              <p className="text-lg"><strong>Assigned Chef:</strong> {selectedOrder.chef}</p>
-              <p className="text-lg"><strong>Delivery Status:</strong> {selectedOrder.deliveryStatus}</p>
-              <button
-                className="mt-5 bg-red-500 px-6 py-2 rounded-md hover:bg-red-600 transition-all duration-200 ease-in-out"
-                onClick={() => setSelectedOrder(null)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  </div>
-        )}
+
 {/* Users Section */}
 {activeTab === "users" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Users</h2>
-    {/* Users Table */}
-    <div className="bg-black bg-opacity-20 backdrop-blur-md shadow-lg rounded-xl p-5 text-white">
-      <table className="min-w-full bg-black bg-opacity-10 rounded-md text-white shadow-md">
-        <thead>
-          <tr className="border-b border-gray-700">
-            <th className="py-3 px-4 text-left">User ID</th>
-            <th className="py-3 px-4 text-left">Name</th>
-            <th className="py-3 px-4 text-left">Email</th>
-            <th className="py-3 px-4 text-left">Role</th>
-            <th className="py-3 px-4 text-left">Status</th>
-            <th className="py-3 px-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { id: 1, name: "Amit Sharma", email: "amit@gmail.com", role: "Chef", status: "Active", enrollmentDate: "2023-05-15", frequentOrder: "lunch", orderFrequency: "Weekly", specialization: "Indian Cuisine", rating: "4.8" },
-            { id: 2, name: "Neha Singh", email: "neha@gmail.com", role: "User", status: "Inactive", enrollmentDate: "2024-01-20", frequentOrder: "Aalu Parantha", orderFrequency: "Monthly", ordersDone: 15 },
-            { id: 3, name: "Ravi Verma", email: "ravi@gmail.com", role: "User", status: "Active", enrollmentDate: "2023-09-10", frequentOrder: "Ghobhi Aalu", orderFrequency: "Bi-Weekly", ordersDone: 27 },
-            { id: 4, name: "Surbhi Sharma", email: "surbhi@gmail.com", role: "Chef", status: "Active", enrollmentDate: "2023-05-15", frequentOrder: "lunch", orderFrequency: "Weekly", specialization: "Indian Cuisine", rating: "4.8" },
-            { id: 5, name: "Nitin Singh", email: "nitin@gmail.com", role: "User", status: "Inactive", enrollmentDate: "2024-01-20", frequentOrder: "Aalu Parantha", orderFrequency: "Monthly", ordersDone: 5 },
-            { id: 6, name: "Ravikant Verma", email: "ravik@gmail.com", role: "User", status: "Active", enrollmentDate: "2023-09-10", frequentOrder: "Ghobhi Aalu", orderFrequency: "Bi-Weekly", ordersDone: 32 },
-          ]
-            .filter(user => user.role === "User")
-            .map((user) => (
-              <React.Fragment key={user.id}>
-                <tr className="hover:bg-red-900 hover:bg-opacity-30 transition duration-200 ease-in-out">
-                  <td className="py-2 px-4 border-t border-gray-700 text-left">{user.id}</td>
-                  <td className="py-2 px-4 border-t border-gray-700 text-left">{user.name}</td>
-                  <td className="py-2 px-4 border-t border-gray-700 text-left">{user.email}</td>
-                  <td className="py-2 px-4 border-t border-gray-700 text-left">{user.role}</td>
-                  <td
-                    className={`py-2 px-4 border-t border-gray-700 text-left ${
-                      user.status === "Active" ? "text-green-400" : "text-red-400"
-                    }`}
-                  >
-                    {user.status}
-                  </td>
-                  <td className="py-2 px-4 border-t border-gray-700 text-center space-x-2">
-                    <button
-                      className="text-blue-400 hover:text-blue-600"
-                      onClick={() => toggleDetails(user.id)}
-                    >
-                      {activeUserId === user.id ? "Hide" : "View"}
-                    </button>
-                    <button
-                      className={`${
-                        user.status === "Active"
-                          ? "text-yellow-400 hover:text-yellow-600"
-                          : "text-green-400 hover:text-green-600"
-                      }`}
-                      onClick={() => toggleUserStatus(user.id)}
-                    >
-                      {user.status === "Active" ? "Block" : "Activate"}
-                    </button>
-                    <button
-                      className="text-red-400 hover:text-red-600"
-                      onClick={() => alert(`Deleting user ${user.name}`)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                {activeUserId === user.id && (
-                  <tr className="bg-gray-800 bg-opacity-50">
-                    <td colSpan="6" className="py-4 px-6 border-t border-gray-700 text-left">
-                      <div className="text-gray-300">
-                        <p><strong>Enrollment Date:</strong> {user.enrollmentDate}</p>
-                        <p><strong>Most Frequent Order:</strong> {user.frequentOrder}</p>
-                        <p><strong>Order Frequency:</strong> {user.orderFrequency}</p>
-                        <p><strong>Number of Orders Done:</strong> {user.ordersDone}</p>
-                      </div>
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
-            ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <UsersPage
+    activeUserId={activeUserId}
+    toggleDetails={toggleDetails}
+    toggleUserStatus={toggleUserStatus}
+  />
 )}
+
 
 {activeTab === "HomeChefs" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Home Chefs</h2>
-    <div className="bg-black bg-opacity-20 backdrop-blur-md shadow-lg rounded-xl p-5 text-white">
-      <table className="min-w-full bg-black bg-opacity-10 rounded-md text-white shadow-md">
-        <thead>
-          <tr className="border-b border-gray-700">
-            <th className="py-3 px-4 text-left">Chef ID</th>
-            <th className="py-3 px-4 text-left">Name</th>
-            <th className="py-3 px-4 text-left">Email</th>
-            <th className="py-3 px-4 text-left">Role</th>
-            <th className="py-3 px-4 text-left">Status</th>
-            <th className="py-3 px-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { id: 1, name: "Amit Sharma", email: "amit@gmail.com", role: "Chef", status: "Active", enrollmentDate: "2023-05-15", specialization: "Indian Cuisine", rating: "4.8", mealsCooked: 100 },
-            { id: 4, name: "Surbhi Sharma", email: "surbhi@gmail.com", role: "Chef", status: "Active", enrollmentDate: "2023-05-15", specialization: "Indian Cuisine", rating: "4.8", mealsCooked: 120 },
-          ].map((chef) => (
-            <React.Fragment key={chef.id}>
-              <tr className="hover:bg-green-900 hover:bg-opacity-30 transition duration-200 ease-in-out">
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{chef.id}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{chef.name}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{chef.email}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{chef.role}</td>
-                <td
-                  className={`py-2 px-4 border-t border-gray-700 text-left ${
-                    chef.status === "Active" ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {chef.status}
-                </td>
-                <td className="py-2 px-4 border-t border-gray-700 text-center space-x-2">
-                  <button
-                    className="text-blue-400 hover:text-blue-600"
-                    onClick={() => toggleDetails(chef.id)}
-                  >
-                    {activeUserId === chef.id ? "Hide" : "View"}
-                  </button>
-                  <button
-                    className={`${
-                      chef.status === "Active"
-                        ? "text-yellow-400 hover:text-yellow-600"
-                        : "text-green-400 hover:text-green-600"
-                    }`}
-                    onClick={() => toggleUserStatus(chef.id)}
-                  >
-                    {chef.status === "Active" ? "Block" : "Activate"}
-                  </button>
-                  <button
-                    className="text-red-400 hover:text-red-600"
-                    onClick={() => alert(`Deleting chef ${chef.name}`)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              {activeUserId === chef.id && (
-                <tr className="bg-gray-800 bg-opacity-50">
-                  <td colSpan="6" className="py-4 px-6 border-t border-gray-700 text-left">
-                    <div className="text-gray-300">
-                      <p><strong>Enrollment Date:</strong> {chef.enrollmentDate}</p>
-                      <p><strong>Specialization:</strong> {chef.specialization}</p>
-                      <p><strong>Rating:</strong> {chef.rating}</p>
-                      <p><strong>Meals Cooked:</strong> {chef.mealsCooked}</p>
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <HomeChefs
+    activeUserId={activeUserId}
+    toggleDetails={toggleDetails}
+    toggleUserStatus={toggleUserStatus}
+  />
 )}
 
+
+
 {activeTab === "Admins" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Admin Panel</h2>
-    <div className="bg-black bg-opacity-20 backdrop-blur-md shadow-lg rounded-xl p-5 text-white">
-      <table className="min-w-full bg-black bg-opacity-10 rounded-md text-white shadow-md">
-        <thead>
-          <tr className="border-b border-gray-700">
-            <th className="py-3 px-4 text-left">Admin ID</th>
-            <th className="py-3 px-4 text-left">Name</th>
-            <th className="py-3 px-4 text-left">Phone</th>
-            <th className="py-3 px-4 text-left">Authority</th>
-            <th className="py-3 px-4 text-left">Status</th>
-            <th className="py-3 px-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            {
-              id: 101,
-              name: "Rahul Mehra",
-              phone: "9876543210",
-              authority: "Chef Community Lead",
-              status: "Active",
-              region: "North Zone",
-              responsibility: "Managing chef onboarding and welfare",
-              appointedDate: "2023-07-01",
-            },
-            {
-              id: 102,
-              name: "Simran Kaur",
-              phone: "9912345678",
-              authority: "Delivery Coordinator",
-              status: "Active",
-              region: "West Zone",
-              responsibility: "Tracking and monitoring delivery operations",
-              appointedDate: "2023-08-12",
-            },
-            {
-              id: 103,
-              name: "Arjun Patel",
-              phone: "9988776655",
-              authority: "Menu Strategist",
-              status: "Inactive",
-              region: "Central",
-              responsibility: "Curating weekly menu with local touch",
-              appointedDate: "2023-06-21",
-            },
-            {
-              id: 104,
-              name: "Priya Nair",
-              phone: "9966001122",
-              authority: "Operations Head",
-              status: "Active",
-              region: "Pan India",
-              responsibility: "Oversees all admin operations and analytics",
-              appointedDate: "2023-05-10",
-            },
-          ].map((admin) => (
-            <React.Fragment key={admin.id}>
-              <tr className="hover:bg-blue-900 hover:bg-opacity-30 transition duration-200 ease-in-out">
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{admin.id}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{admin.name}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{admin.phone}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{admin.authority}</td>
-                <td
-                  className={`py-2 px-4 border-t border-gray-700 text-left ${
-                    admin.status === "Active" ? "text-green-400" : "text-red-400"
-                  }`}
-                >
-                  {admin.status}
-                </td>
-                <td className="py-2 px-4 border-t border-gray-700 text-center space-x-2">
-                  <button
-                    className="text-blue-400 hover:text-blue-600"
-                    onClick={() => toggleDetails(admin.id)}
-                  >
-                    {activeUserId === admin.id ? "Hide" : "View"}
-                  </button>
-                  <button
-                    className={`${
-                      admin.status === "Active"
-                        ? "text-yellow-400 hover:text-yellow-600"
-                        : "text-green-400 hover:text-green-600"
-                    }`}
-                    onClick={() => toggleUserStatus(admin.id)}
-                  >
-                    {admin.status === "Active" ? "Deactivate" : "Activate"}
-                  </button>
-                  <button
-                    className="text-red-400 hover:text-red-600"
-                    onClick={() => alert(`Removing admin ${admin.name}`)}
-                  >
-                    Remove
-                  </button>
-                </td>
-              </tr>
-              {activeUserId === admin.id && (
-                <tr className="bg-gray-800 bg-opacity-50">
-                  <td colSpan="6" className="py-4 px-6 border-t border-gray-700 text-left">
-                    <div className="text-gray-300">
-                      <p><strong>Assigned Region:</strong> {admin.region}</p>
-                      <p><strong>Responsibility Scope:</strong> {admin.responsibility}</p>
-                      <p><strong>Date Appointed:</strong> {admin.appointedDate}</p>
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <AdminsPage
+    activeUserId={activeUserId}
+    toggleDetails={toggleDetails}
+    toggleUserStatus={toggleUserStatus}
+  />
 )}
 
 
 
 {/* Analytics Section */}
 {activeTab === "analytics" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Analytics</h2>
-    <div className="grid grid-cols-2 gap-4">
-      <div className="bg-gray-700 p-5 rounded-lg">
-        <h3 className="text-xl mb-3">Monthly Revenue</h3>
-        <ResponsiveContainer width="100%" height={200}>
-          <BarChart data={data}>
-            <XAxis dataKey="name" stroke="#fff" />
-            <YAxis stroke="#fff" />
-            <Tooltip />
-            <Bar dataKey="revenue" fill="#ffa500" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      <div className="bg-gray-700 p-5 rounded-lg">
-        <h3 className="text-xl mb-3">Chef Distribution</h3>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="chefs"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={80}
-              fill="#82ca9d"
-              label
-            >
-              {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={["#0088FE", "#00C49F", "#FFBB28", "#FF8042"][index % 4]} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-    </div>
-  </div>
+  <AnalyticsPage data={data} />
 )}
+
 
 {/* Delivery Partners Section */}
 {activeTab === "Delivery Partners" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Delivery Partners</h2>
-    {/* Delivery Partners Table */}
-    <div className="bg-black bg-opacity-20 backdrop-blur-md shadow-lg rounded-xl p-5 text-white">
-      <table className="min-w-full bg-black bg-opacity-10 rounded-md text-white shadow-md">
-        <thead>
-          <tr className="border-b border-gray-700">
-            <th className="py-3 px-4 text-left">Partner ID</th>
-            <th className="py-3 px-4 text-left">Name</th>
-            <th className="py-3 px-4 text-left">Contact</th>
-            <th className="py-3 px-4 text-left">Delivery Area</th>
-            <th className="py-3 px-4 text-left">Pickup Point</th>
-            <th className="py-3 px-4 text-left">Working Hours</th>
-            <th className="py-3 px-4 text-left">Deliveries Made</th>
-            <th className="py-3 px-4 text-left">Status</th>
-            <th className="py-3 px-4 text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            { id: 101, name: "Rakesh Kumar", contact: "9876543210", area: "Paramount", pickup: "Ajnara", hours: "9 AM - 6 PM", deliveries: 120, status: "Active" },
-            { id: 102, name: "Neha Gupta", contact: "9876543220", area: "Supertech", pickup: "Supertech", hours: "10 AM - 8 PM", deliveries: 80, status: "Inactive" },
-            { id: 103, name: "Vikram Singh", contact: "9876543230", area: "Ajnara", pickup: "Paramount", hours: "8 AM - 5 PM", deliveries: 150, status: "Active" },
-            { id: 104, name: "Amit Rana", contact: "9876543240", area: "Crossing Republic", pickup: "Supertech", hours: "11 AM - 7 PM", deliveries: 95, status: "Active" },
-          ].map((partner) => (
-            <React.Fragment key={partner.id}>
-              <tr className="hover:bg-red-900 hover:bg-opacity-30 transition duration-200 ease-in-out">
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.id}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.name}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.contact}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.area}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.pickup}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.hours}</td>
-                <td className="py-2 px-4 border-t border-gray-700 text-left">{partner.deliveries}</td>
-                <td className={`py-2 px-4 border-t border-gray-700 text-left ${partner.status === "Active" ? "text-green-400" : "text-red-400"}`}>
-                  {partner.status}
-                </td>
-                <td className="py-2 px-4 border-t border-gray-700 text-center space-x-2">
-                  <button
-                    className="text-blue-400 hover:text-blue-600"
-                    onClick={() => setActiveDetails(partner)}
-                  >
-                    View
-                  </button>
-                  <button
-                    className="text-red-400 hover:text-red-600"
-                    onClick={() => alert(`Deleting partner ${partner.name}`)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
-    {/* Pop-up for Delivery Partner Details */}
-    {activeDetails && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-        <div className="bg-gray-800 text-white p-6 rounded-lg shadow-lg w-1/3">
-          <h3 className="text-xl font-bold mb-4">Details of {activeDetails.name}</h3>
-          <p><strong>Partner ID:</strong> {activeDetails.id}</p>
-          <p><strong>Contact:</strong> {activeDetails.contact}</p>
-          <p><strong>Delivery Area:</strong> {activeDetails.area}</p>
-          <p><strong>Pickup Point:</strong> {activeDetails.pickup}</p>
-          <p><strong>Working Hours:</strong> {activeDetails.hours}</p>
-          <p><strong>Deliveries Made:</strong> {activeDetails.deliveries}</p>
-          <p><strong>Status:</strong> {activeDetails.status}</p>
-          <p><strong>Efficiency:</strong> {Math.floor((activeDetails.deliveries / 150) * 100)}%</p>
-          <p><strong>Pending Deliveries:</strong> {Math.floor(Math.random() * 5)}</p>
-          <p><strong>Rating:</strong> {Math.floor(Math.random() * 5) + 1} / 5</p>
-          <button
-            className="mt-4 text-red-400 hover:text-red-600"
-            onClick={() => setActiveDetails(null)}
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    )}
-  </div>
+  <DeliveryPartnersPage
+    activeDetails={activeDetails}
+    setActiveDetails={setActiveDetails}
+  />
 )}
 
 {/* Settings Section */}
 {activeTab === "settings" && (
-  <div>
-    <h2 className="text-3xl font-bold mb-5">Settings</h2>
-    <div className="flex">
-      {/* Sidebar */}
-      <div className="bg-gray-800 text-white p-4 rounded-lg w-1/4">
-        <ul className="space-y-2">
-          {[
-            'General Settings', 
-            'User Management', 
-            'Profile Settings', 
-            'Security Settings', 
-            'API & Integration', 
-            'Backup & Restore', 
-            'System Logs', 
-            'Content Management', 
-            'Notification Settings', 
-            'Financial Settings', 
-            'Analytics & Reports', 
-            'Theme & UI Customization', 
-            'Developer Settings', 
-            'Data Import/Export', 
-            'Privacy & GDPR', 
-            'Help & Support', 
-            'Maintenance Mode'
-          ].map((section) => (
-            <li
-              key={section}
-              className={`p-2 rounded-md cursor-pointer hover:bg-gray-600 ${
-                activeSection === section ? 'bg-gray-600' : ''
-              }`}
-              onClick={() => setActiveSection(section)}
-            >
-              {section}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Content */}
-      <div className="bg-gray-700 text-white p-6 rounded-lg w-3/4 ml-4">
-        {activeSection === 'General Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">General Settings</h3>
-            <p>Update site name, logo, timezone, and other basic settings.</p>
-          </div>
-        )}
-        {activeSection === 'User Management' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">User Management</h3>
-            <p>Manage user accounts, roles, and permissions.</p>
-          </div>
-        )}
-        {activeSection === 'Profile Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Profile Settings</h3>
-            <p>Update profile information, password, and enable 2FA.</p>
-          </div>
-        )}
-        {activeSection === 'Security Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Security Settings</h3>
-            <p>Configure IP whitelisting, CAPTCHA, and password policies.</p>
-          </div>
-        )}
-        {activeSection === 'API & Integration' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">API & Integration</h3>
-            <p>Manage API keys and third-party integrations.</p>
-          </div>
-        )}
-        {activeSection === 'Backup & Restore' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Backup & Restore</h3>
-            <p>Manage data backups and restore settings.</p>
-          </div>
-        )}
-        {activeSection === 'System Logs' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">System Logs</h3>
-            <p>View login history, error logs, and activity tracking.</p>
-          </div>
-        )}
-        {activeSection === 'Content Management' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Content Management</h3>
-            <p>Add, edit, and delete content, manage media library.</p>
-          </div>
-        )}
-        {activeSection === 'Notification Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Notification Settings</h3>
-            <p>Configure email, push notifications, and system alerts.</p>
-          </div>
-        )}
-        {activeSection === 'Financial Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Financial Settings</h3>
-            <p>Configure payment gateways, taxes, and financial reports.</p>
-          </div>
-        )}
-        {activeSection === 'Analytics & Reports' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Analytics & Reports</h3>
-            <p>View traffic, financial, and user engagement reports.</p>
-          </div>
-        )}
-        {activeSection === 'Theme & UI Customization' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Theme & UI Customization</h3>
-            <p>Customize the UI, theme colors, and layout.</p>
-          </div>
-        )}
-        {activeSection === 'Developer Settings' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Developer Settings</h3>
-            <p>Enable debug mode, error reporting, and custom scripts.</p>
-          </div>
-        )}
-        {activeSection === 'Data Import/Export' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Data Import/Export</h3>
-            <p>Import or export data in various formats (CSV, JSON).</p>
-          </div>
-        )}
-        {activeSection === 'Privacy & GDPR' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Privacy & GDPR</h3>
-            <p>Manage data privacy settings and compliance requirements.</p>
-          </div>
-        )}
-        {activeSection === 'Help & Support' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Help & Support</h3>
-            <p>Access FAQs, support tickets, and documentation.</p>
-          </div>
-        )}
-        {activeSection === 'Maintenance Mode' && (
-          <div>
-            <h3 className="text-xl font-semibold mb-4">Maintenance Mode</h3>
-            <p>Enable maintenance mode and customize the message.</p>
-          </div>
-        )}
-      </div>
-    </div>
-  </div>
+  <SettingsPage
+    activeSection={activeSection}
+    setActiveSection={setActiveSection}
+  />
 )}
 
 
