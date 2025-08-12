@@ -4,8 +4,8 @@ const ChefSettings = () => {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-2xl font-semibold">Settings</h3>
-        <p className="text-sm text-gray-400">Manage preferences & integrations</p>
+        <h3 className="text-2xl font-semibold">Manage preferences & integrations</h3>
+        <p className="text-sm text-gray-400"></p>
       </div>
 
       <div className="bg-gray-900/60 rounded-lg p-6 shadow">

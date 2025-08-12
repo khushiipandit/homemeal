@@ -4,8 +4,8 @@ const ChefProfile = () => {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-2xl font-semibold">Profile</h3>
-        <p className="text-sm text-gray-400">Your chef profile & preferences</p>
+        <h3 className="text-2xl font-semibold">Our chef profile & preferences</h3>
+        <p className="text-sm text-gray-400"></p>
       </div>
 
       <div className="bg-gray-900/60 rounded-lg p-6 shadow grid grid-cols-3 gap-6">

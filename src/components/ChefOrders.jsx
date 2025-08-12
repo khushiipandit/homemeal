@@ -5,8 +5,8 @@ const ChefOrders = ({ orders, viewOrder, toggleOrderStatus, deleteOrder }) => {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-2xl font-semibold">Orders</h3>
-          <p className="text-sm text-gray-400">Manage requests and view order details</p>
+          <h3 className="text-2xl font-semibold">Manage requests and view order details</h3>
+          <p className="text-sm text-gray-400"></p>
         </div>
       </div>
 

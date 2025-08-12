@@ -15,8 +15,8 @@ const ChefMenu = ({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-2xl font-semibold">Menu</h3>
-          <p className="text-sm text-gray-400">Manage dishes and availability</p>
+          <h3 className="text-2xl font-semibold">Manage dishes and availability</h3>
+          <p className="text-sm text-gray-400"></p>
         </div>
 
         <div className="flex items-center gap-3">

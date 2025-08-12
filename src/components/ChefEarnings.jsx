@@ -4,9 +4,9 @@ const ChefEarnings = ({ totalEarnings }) => {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-2xl font-semibold">Earnings</h3>
+        <h3 className="text-2xl font-semibold">Payouts, balance and recent transactions</h3>
         <p className="text-sm text-gray-400">
-          Payouts, balance and recent transactions
+          
         </p>
       </div>
 

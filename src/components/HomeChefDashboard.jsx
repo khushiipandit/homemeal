@@ -1,5 +1,6 @@
 // src/components/HomeChefDashboard.jsx
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   FaUtensils,
   FaListAlt,
@@ -20,6 +21,8 @@ import ChefSettings from "../components/ChefSettings";
 
 export default function HomeChefDashboard() {
   const [activeTab, setActiveTab] = useState("Overview");
+  const chefName = "Chef Anjali"; // <- replace with dynamic name later
+
   const [orders, setOrders] = useState([
     { id: "HC-ORD-1001", user: "Ravi Sharma", item: "Paneer Butter Masala (1 plate)", price: 180, status: "Pending", date: "2025-04-12", address: "Sector 21, Delhi" },
     { id: "HC-ORD-1002", user: "Meera Joshi", item: "Masala Dosa (2)", price: 120, status: "Delivered", date: "2025-04-11", address: "MG Road, Bangalore" },
@@ -69,7 +72,13 @@ export default function HomeChefDashboard() {
     <div className="flex h-screen bg-gray-900 text-white">
       {/* Sidebar */}
       <aside className="w-1/5 bg-gray-800 p-5 flex flex-col">
-        <h1 className="text-2xl font-bold mb-5">HomeMe Chef</h1>
+        <Link to="/" className="mb-5 flex items-center">
+          <img
+            src="/images/loggo.png"
+            alt="HomeMe Logo"
+            className="w-28 cursor-pointer"
+          />
+        </Link>
         <nav className="space-y-4">
           {[
             { key: "Overview", label: "Overview", icon: <FaChartLine /> },
@@ -109,6 +118,13 @@ export default function HomeChefDashboard() {
             <button className="p-2 rounded-md bg-gray-700 hover:bg-gray-600">
               <FaBell />
             </button>
+            <div
+              className="flex items-center cursor-pointer space-x-2"
+              onClick={() => setActiveTab("Profile")}
+            >
+              <FaUserCircle className="text-2xl" />
+              <span className="hidden md:inline">{chefName}</span>
+            </div>
           </div>
         </div>
 
@@ -121,6 +137,7 @@ export default function HomeChefDashboard() {
             menu={menu}
             orders={orders}
             setActiveTab={setActiveTab}
+            cardStyle="bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl p-5 transition-transform transform hover:-translate-y-1"
           />
         )}
         {activeTab === "Orders" && (

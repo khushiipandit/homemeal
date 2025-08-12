@@ -112,10 +112,10 @@ const Comp8 = () => {
         {activeTab === "overview" && (
           <div>
             <div className="grid grid-cols-4 gap-4">
-              <div className="bg-gray-700 p-5 rounded-lg text-center"><h3>Total Orders</h3><p className="text-2xl">372</p></div>
-              <div className="bg-gray-700 p-5 rounded-lg text-center"><h3>Users</h3><p className="text-2xl">220</p></div>
-              <div className="bg-gray-700 p-5 rounded-lg text-center"><h3>Revenue</h3><p className="text-2xl">$7,000</p></div>
-              <div className="bg-gray-700 p-5 rounded-lg text-center"><h3>Pending Orders</h3><p className="text-2xl">45</p></div>
+              <div className="bg-gradient-to-br from-gray-700 to-gray-900 p-5 rounded-lg text-center"><h3>Total Orders</h3><p className="text-2xl">372</p></div>
+              <div className="bg-gradient-to-br from-gray-700 to-gray-900 p-5 rounded-lg text-center"><h3>Users</h3><p className="text-2xl">220</p></div>
+              <div className="bg-gradient-to-br from-gray-700 to-gray-900 p-5 rounded-lg text-center"><h3>Revenue</h3><p className="text-2xl">$7,000</p></div>
+              <div className="bg-gradient-to-br from-gray-700 to-gray-900 p-5 rounded-lg text-center"><h3>Pending Orders</h3><p className="text-2xl">45</p></div>
             </div>
 
             {/* Charts Section */}
