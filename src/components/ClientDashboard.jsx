@@ -235,11 +235,11 @@ export default function ClientDashboard() {
     ];
 
     return (
-      <aside className="w-1/5 min-w-[220px] bg-gray-900/60 p-5 border-r border-gray-800 flex flex-col">
-        <div className="flex items-center gap-3 mb-6">
-          <Link to="/" className="inline-flex items-center gap-2">
+      <aside className="w-64 min-w-[240px] bg-gradient-to-b from-gray-900/70 to-gray-900/50 p-6 border-r border-gray-800 flex flex-col">
+        <div className="flex items-start gap-3 mb-6">
+          <Link to="/" className="inline-flex items-center gap-3">
             {/* Logo: image, left-aligned like admin */}
-            <img src="/images/loggo.png" alt="HomeMe" className="w-10 h-10 object-contain" />
+            <img src="/images/loggo.png" alt="HomeMe" className="w-12 h-12 object-contain" />
             <div className="hidden md:block">
               <div className="text-sm font-semibold">HomeMe</div>
               <div className="text-xs text-gray-400">Eat like home</div>
@@ -247,17 +247,19 @@ export default function ClientDashboard() {
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-1">
+        <nav className="flex-1 space-y-2">
           {items.map((it) => (
             <button
               key={it.key}
               onClick={() => setActiveTab(it.key)}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
-                activeTab === it.key ? `${ACCENT} text-black` : "text-gray-300 hover:bg-gray-800/30"
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm transition-all duration-200 ${
+                activeTab === it.key
+                  ? `shadow-2xl ${ACCENT} text-black transform translate-x-0`
+                  : "text-gray-300 hover:bg-gray-800/30"
               }`}
             >
               <span className="text-lg">{it.icon}</span>
-              <span>{it.label}</span>
+              <span className="font-medium">{it.label}</span>
               <span className="ml-auto text-xs text-gray-400">{it.key === "MyOrders" ? totalOrders : ""}</span>
             </button>
           ))}
@@ -273,21 +275,21 @@ export default function ClientDashboard() {
 
   function Topbar() {
     return (
-      <header className="flex items-center justify-between px-6 py-3 border-b border-gray-800">
-        <div className="flex items-center gap-4">
+      <header className="flex items-center justify-between px-8 py-3 border-b border-gray-800 bg-transparent backdrop-blur-sm">
+        <div className="flex items-center gap-6">
           {/* collapsed logo for smaller screens - keep leftmost top placement */}
           <Link to="/" className="flex items-center gap-3">
-            
-            
+            <img src="/images/loggo.png" alt="HomeMe" className="w-8 h-8 object-contain" />
+            <div className="hidden md:block text-sm font-semibold">HomeMe</div>
           </Link>
 
-          <div className="relative w-[520px] max-w-[48vw]">
+          <div className="relative w-[560px] max-w-[56vw]">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               type="search"
               placeholder="Search chefs, dishes, cuisines..."
-              className="w-full px-4 py-2 rounded-full bg-gray-900/40 placeholder:text-gray-500 focus:outline-none"
+              className="w-full px-4 py-2 rounded-full bg-[#0f1720] placeholder:text-gray-500 focus:outline-none border border-gray-800"
             />
             <FaSearch className="absolute right-3 top-2 text-gray-400" />
           </div>
@@ -308,7 +310,7 @@ export default function ClientDashboard() {
               <div className="text-sm font-medium">{profileName}</div>
               <div className="text-xs text-gray-400">View profile</div>
             </div>
-            <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white text-sm">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-gray-700 to-gray-600 flex items-center justify-center text-white text-sm">
               {profileName.split(" ").map((n) => n[0]).slice(0, 2).join("")}
             </div>
           </div>
@@ -323,35 +325,35 @@ export default function ClientDashboard() {
       <div className="space-y-6">
         {/* Stats cards — styled to match admin 3D-like cards */}
         <div className="grid grid-cols-4 gap-6">
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-5 shadow-lg border border-gray-800`}>
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
             <div className="text-xs text-gray-400">Total Orders</div>
-            <div className="text-2xl font-semibold mt-2">{totalOrders}</div>
+            <div className="text-2xl font-semibold mt-3">{totalOrders}</div>
             <div className="mt-3 text-sm text-gray-400">Orders placed from your account</div>
           </div>
 
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-5 shadow-lg border border-gray-800`}>
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
             <div className="text-xs text-gray-400">Pending Deliveries</div>
-            <div className="text-2xl font-semibold mt-2">{pendingDeliveries}</div>
+            <div className="text-2xl font-semibold mt-3">{pendingDeliveries}</div>
             <div className="mt-3 text-sm text-gray-400">On the way or waiting to be picked up</div>
           </div>
 
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-5 shadow-lg border border-gray-800`}>
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
             <div className="text-xs text-gray-400">Completed Orders</div>
-            <div className="text-2xl font-semibold mt-2">{completedOrders}</div>
+            <div className="text-2xl font-semibold mt-3">{completedOrders}</div>
             <div className="mt-3 text-sm text-gray-400">Delivered successfully</div>
           </div>
 
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-5 shadow-lg border border-gray-800`}>
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
             <div className="text-xs text-gray-400">Wallet Balance</div>
-            <div className="text-2xl font-semibold mt-2">₹{balance}</div>
+            <div className="text-2xl font-semibold mt-3">₹{balance}</div>
             <div className="mt-3 text-sm text-gray-400">Available balance for orders & tips</div>
           </div>
         </div>
 
         <div className="grid grid-cols-3 gap-6">
           {/* Left: Orders trend */}
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-4 shadow-lg border border-gray-800 col-span-2`}>
-            <div className="flex items-center justify-between mb-3">
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-5 shadow-2xl ring-1 ring-gray-800 col-span-2`}>
+            <div className="flex items-center justify-between mb-4">
               <div>
                 <div className="text-sm text-gray-400">Orders This Week</div>
                 <div className="text-lg font-semibold">Order trend</div>
@@ -359,13 +361,13 @@ export default function ClientDashboard() {
               <div className="text-sm text-gray-400">Last 7 days</div>
             </div>
 
-            <div style={{ height: 240 }}>
+            <div style={{ height: 260 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={lineData}>
-                  <CartesianGrid stroke="#1f2937" strokeDasharray="3 3" />
+                  <CartesianGrid stroke="#0f1720" strokeDasharray="4 4" />
                   <XAxis dataKey="day" stroke="#9CA3AF" />
                   <YAxis stroke="#9CA3AF" />
-                  <Tooltip />
+                  <Tooltip contentStyle={{ backgroundColor: "#0b1220", borderColor: "#111827" }} />
                   <Legend />
                   <Line type="monotone" dataKey="orders" stroke="#FFA94D" strokeWidth={3} dot={{ r: 3 }} />
                   <Line type="monotone" dataKey="spent" stroke="#6EE7B7" strokeWidth={2} dot={{ r: 2 }} />
@@ -375,7 +377,7 @@ export default function ClientDashboard() {
           </div>
 
           {/* Right: Spending pie */}
-          <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-4 shadow-lg border border-gray-800`}>
+          <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-5 shadow-2xl ring-1 ring-gray-800`}>
             <div className="flex items-center justify-between mb-3">
               <div>
                 <div className="text-sm text-gray-400">Spending</div>
@@ -384,10 +386,10 @@ export default function ClientDashboard() {
               <div className="text-sm text-gray-400">Category</div>
             </div>
 
-            <div style={{ height: 240 }} className="flex items-center justify-center">
+            <div style={{ height: 260 }} className="flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={spendingPie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} label>
+                  <Pie data={spendingPie} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={76} label>
                     {spendingPie.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                     ))}
@@ -425,10 +427,10 @@ export default function ClientDashboard() {
           <div className="text-sm text-gray-400">Showing {browseResults.length} results</div>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-4 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-4 shadow-2xl ring-1 ring-gray-800`}>
           <div className="grid gap-3">
             {browseResults.map((c) => (
-              <div key={c.id} className="flex items-center justify-between p-3 rounded hover:bg-gray-800/30">
+              <div key={c.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-800/30">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded bg-gray-700 flex items-center justify-center text-white text-lg">
                     {c.name.split(" ").map((n) => n[0]).slice(0, 2).join("")}
@@ -490,7 +492,7 @@ export default function ClientDashboard() {
           <div className="text-sm text-gray-400">Total {orders.length}</div>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-4 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-4 shadow-2xl ring-1 ring-gray-800`}>
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
               <thead className="text-left text-gray-300 border-b border-gray-700">
@@ -545,7 +547,7 @@ export default function ClientDashboard() {
           <p className="text-sm text-gray-400">Track the status of current deliveries</p>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-6 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
           <div className="text-gray-300">Active deliveries</div>
           <div className="mt-4 space-y-3">
             {orders.filter((o) => o.status === "Pending").length === 0 ? (
@@ -582,7 +584,7 @@ export default function ClientDashboard() {
           <p className="text-sm text-gray-400">Manage balance, transactions and payment methods</p>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-6 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
           <div className="grid grid-cols-3 gap-6 items-center">
             <div>
               <div className="text-sm text-gray-400">Balance</div>
@@ -626,7 +628,7 @@ export default function ClientDashboard() {
           <p className="text-sm text-gray-400">Your saved chefs & dishes</p>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-4 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-4 shadow-2xl ring-1 ring-gray-800`}>
           {favs.length === 0 ? (
             <div className="text-gray-400 p-4">No favourites yet. Add chefs to favourites to find them quickly.</div>
           ) : (
@@ -658,7 +660,7 @@ export default function ClientDashboard() {
           <p className="text-sm text-gray-400">Manage your account, addresses and preferences</p>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-6 shadow-lg border border-gray-800 grid grid-cols-3 gap-6`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800 grid grid-cols-3 gap-6`}>
           <div className="col-span-1">
             <div className="w-36 h-36 rounded-full bg-gray-700 flex items-center justify-center text-4xl mb-4 text-white">
               {profileName.split(" ").map(n => n[0]).slice(0,2).join("")}
@@ -703,7 +705,7 @@ export default function ClientDashboard() {
           <p className="text-sm text-gray-400">Get help for orders, payments and more</p>
         </div>
 
-        <div className={`${CARD_BG} ${CARD_GLASS} rounded-2xl p-6 shadow-lg border border-gray-800`}>
+        <div className={`${CARD_BG} ${CARD_GLASS} rounded-3xl p-6 shadow-2xl ring-1 ring-gray-800`}>
           <div className="grid grid-cols-2 gap-6">
             <div>
               <div className="text-sm text-gray-400">Frequently asked</div>
@@ -736,7 +738,7 @@ export default function ClientDashboard() {
       <main className="flex-1 flex flex-col">
         <Topbar />
 
-        <section className="p-6 overflow-auto">
+        <section className="p-6 overflow-auto max-w-[1200px] mx-auto w-full">
           {/* dynamic center content based on activeTab */}
           {activeTab === "Overview" && <OverviewPanel />}
           {activeTab === "Browse" && <BrowsePanel />}
