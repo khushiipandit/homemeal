@@ -36,9 +36,11 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Check if the current route is the Dashboard, and return null if true
-  if (location.pathname === '/dashboard') {
-    return null;
-  }
+ // Check if the current route is a dashboard page, and return null if true
+if (location.pathname === '/dashboard' || location.pathname === '/chefdashboard') {
+  return null;
+}
+
 
   return (
     <nav ref={navRef} className={`
@@ -63,7 +65,7 @@ const Navbar = () => {
           ${menuOpen ? 'absolute top-full left-0 right-0 bg-black shadow-md p-4' : 'hidden'}
           md:static md:bg-transparent md:shadow-none md:p-0
         `}>
-          {['HOME', 'ABOUT', 'PROCESS', 'DASHBOARD'].map((item) => (
+          {['HOME', 'ABOUT', 'PROCESS','CHEFDASHBOARD', 'DASHBOARD'].map((item) => (
             <li key={item} className="py-2 md:py-0">
               <Link
                 to={item === 'HOME' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
