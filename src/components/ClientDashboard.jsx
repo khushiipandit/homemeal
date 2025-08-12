@@ -239,9 +239,9 @@ export default function ClientDashboard() {
         <div className="flex items-start gap-3 mb-6">
           <Link to="/" className="inline-flex items-center gap-3">
             {/* Logo: image, left-aligned like admin */}
-            <img src="/images/loggo.png" alt="HomeMe" className="w-12 h-12 object-contain" />
+            <img src="/images/loggo.png" alt="HomeMeal" className="w-12 h-12 object-contain" />
             <div className="hidden md:block">
-              <div className="text-sm font-semibold">HomeMe</div>
+              <div className="text-sm font-semibold">HomeMeal</div>
               <div className="text-xs text-gray-400">Eat like home</div>
             </div>
           </Link>
@@ -267,7 +267,7 @@ export default function ClientDashboard() {
 
         <div className="mt-6 pt-4 border-t border-gray-800 text-xs text-gray-400">
           <div className="mb-2">App version</div>
-          <div className="text-sm">HomeMe • v1.0</div>
+          <div className="text-sm">HomeMeal • v1.0</div>
         </div>
       </aside>
     );
@@ -278,11 +278,7 @@ export default function ClientDashboard() {
       <header className="flex items-center justify-between px-8 py-3 border-b border-gray-800 bg-transparent backdrop-blur-sm">
         <div className="flex items-center gap-6">
           {/* collapsed logo for smaller screens - keep leftmost top placement */}
-          <Link to="/" className="flex items-center gap-3">
-            <img src="/images/loggo.png" alt="HomeMe" className="w-8 h-8 object-contain" />
-            <div className="hidden md:block text-sm font-semibold">HomeMe</div>
-          </Link>
-
+          
           <div className="relative w-[560px] max-w-[56vw]">
             <input
               value={search}
