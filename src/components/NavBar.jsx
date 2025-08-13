@@ -53,14 +53,15 @@ const Navbar = () => {
       transition-all duration-300 ease-in-out
     `}
     >
-      <div className="container mx-auto px-6 sm:px-8 md:px-10 py-3 md:py-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center text-center justify-start gap-0">
+      {/* Removed container mx-auto so we can manually align logo to left */}
+      <div className="w-full px-0 sm:px-2 md:px-4 py-3 md:py-4 flex justify-between items-center">
+        <Link to="/" className="flex items-center text-center justify-start gap-0 ml-6">
           <img
             src={logoImage}
             alt="Logo"
             className={` ${
               isTransparentPage ? (scrolled ? 'md:h-12 h-10' : 'h-16 md:h-20 ') : 'h-10 md:h-12 '
-            }  `}
+            }`}
           />
         </Link>
 
@@ -84,7 +85,7 @@ const Navbar = () => {
         <ul
           className={`md:flex md:items-center md:space-x-6
           ${menuOpen ? 'absolute top-full left-0 right-0 bg-black shadow-md p-4' : 'hidden'}
-          md:static md:bg-transparent md:shadow-none md:p-0
+          md:static md:bg-transparent md:shadow-none md:p-0 gap-0 mr-15
         `}
         >
           {['HOME', 'ABOUT', 'PROCESS', 'CHEFDASHBOARD', 'DASHBOARD', 'CLIENTDASHBOARDMAIN'].map(
