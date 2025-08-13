@@ -60,7 +60,9 @@ const Comp8 = () => {
   return (
     <div className="flex h-screen bg-gray-900 text-white">
       {/* Sidebar */}
+      
       <div className="w-1/5 bg-gray-800 p-5 flex flex-col">
+      
   <h1 className="text-2xl font-bold mb-5">HomeMeal</h1>
   <nav>
     <ul className="space-y-4">

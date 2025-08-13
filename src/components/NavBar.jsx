@@ -36,13 +36,14 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // Hide Navbar for all dashboard pages
-  if (
-    location.pathname === '/dashboard' ||
-    location.pathname === '/chefdashboard' ||
-    location.pathname === '/clientdashboardmain'
-  ) {
-    return null;
-  }
+if (
+  location.pathname === '/dashboard' ||
+  location.pathname === '/chefdashboard' ||
+  location.pathname === '/clientdashboardmain' ||
+  location.pathname === '/dpdashboardmain'
+) {
+  return null;
+}
 
   return (
     <nav
@@ -50,7 +51,15 @@ const Navbar = () => {
       className={`
       w-full max-w-full fixed top-0 left-0 z-50
       ${isTransparentPage ? (scrolled ? 'bg-black shadow-md' : 'bg-transparent') : 'bg-white shadow-md'}
-      transition-all duration-300 ease-in-out
+      transition-all durationif (
+  location.pathname === '/dashboard' ||
+  location.pathname === '/chefdashboard' ||
+  location.pathname === '/clientdashboardmain' ||
+  location.pathname === '/dpdashboardmain'
+) {
+  return null;
+}
+-300 ease-in-out
     `}
     >
       {/* Removed container mx-auto so we can manually align logo to left */}
@@ -88,7 +97,7 @@ const Navbar = () => {
           md:static md:bg-transparent md:shadow-none md:p-0 gap-0 mr-15
         `}
         >
-          {['HOME', 'ABOUT', 'PROCESS', 'CHEFDASHBOARD', 'DASHBOARD', 'CLIENTDASHBOARDMAIN'].map(
+          {['HOME', 'ABOUT', 'PROCESS', 'CHEFDASHBOARD', 'DASHBOARD', 'CLIENTDASHBOARDMAIN','DPDASHBOARDMAIN'].map(
             (item) => (
               <li key={item} className="py-2 md:py-0">
                 <Link
