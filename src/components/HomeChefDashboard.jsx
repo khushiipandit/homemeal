@@ -12,12 +12,12 @@ import {
 } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 
-import ChefOverview from "../components/ChefOverview";
-import ChefOrders from "../components/ChefOrders";
-import ChefMenu from "../components/ChefMenu";
-import ChefEarnings from "../components/ChefEarnings";
-import ChefProfile from "../components/ChefProfile";
-import ChefSettings from "../components/ChefSettings";
+import ChefOverview from "../components/chef/ChefOverview";
+import ChefOrders from "../components/chef/ChefOrders";
+import ChefMenu from "../components/chef/ChefMenu";
+import ChefEarnings from "../components/chef/ChefEarnings";
+import ChefProfile from "../components/chef/ChefProfile";
+import ChefSettings from "../components/chef/ChefSettings";
 
 export default function HomeChefDashboard() {
   const [activeTab, setActiveTab] = useState("Overview");

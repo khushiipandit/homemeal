@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis, Legend } from "recharts";
 import { FaUtensils, FaUsers, FaChartBar, FaCog, FaChartPie, FaTruck, FaShoppingCart } from "react-icons/fa";
-import OrdersPage from "./OrdersPage"; // adjust path if OrdersPage.jsx is in a different folder
-import UsersPage from "./UsersPage"; // adjust path if needed
-import HomeChefs from "./HomeChefs"; // ✅ matches the JSX below
-import AdminsPage from "./AdminsPage";
-import AnalyticsPage from "./AnalyticsPage";
-import DeliveryPartnersPage from "./DeliveryPartnersPage";
-import SettingsPage from "./SettingsPage";
+import OrdersPage from "./admin/OrdersPage"; // adjust path if OrdersPage.jsx is in a different folder
+import UsersPage from "./admin/UsersPage"; // adjust path if needed
+import HomeChefs from "./admin/HomeChefs"; // ✅ matches the JSX below
+import AdminsPage from "./admin/AdminsPage";
+import AnalyticsPage from "./admin/AnalyticsPage";
+import DeliveryPartnersPage from "./admin/DeliveryPartnersPage";
+import SettingsPage from "./admin/SettingsPage";
 
 
 

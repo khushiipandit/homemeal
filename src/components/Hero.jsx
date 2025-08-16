@@ -51,7 +51,7 @@ const Hero = () => {
             to="/download" 
           >
             <img src="/images/ps-icon.png" alt="Download Icon" className="h-5 w-5" />
-            Download
+            Get Started
           </Link>
         </div>
       </div>
