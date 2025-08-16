@@ -35,15 +35,16 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Hide Navbar for all dashboard pages
-if (
-  location.pathname === '/dashboard' ||
-  location.pathname === '/chefdashboard' ||
-  location.pathname === '/clientdashboardmain' ||
-  location.pathname === '/dpdashboardmain'
-) {
-  return null;
-}
+  // Hide Navbar for all dashboard pages and auth page
+  if (
+    location.pathname === '/dashboard' ||
+    location.pathname === '/chefdashboard' ||
+    location.pathname === '/clientdashboardmain' ||
+    location.pathname === '/dpdashboardmain' ||
+    location.pathname === '/auth'
+  ) {
+    return null;
+  }
 
   return (
     <nav

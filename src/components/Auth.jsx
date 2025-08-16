@@ -3,6 +3,7 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { MdRestaurantMenu } from "react-icons/md";
 import { GiDeliveryDrone, GiCrown } from "react-icons/gi";
 import { BsBagFill } from "react-icons/bs";
+import { Link } from "react-router-dom"; // ✅ Added import
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -22,7 +23,11 @@ const Auth = () => {
           />
           {/* Dark Overlay with Text */}
           <div className="absolute inset-0 flex flex-col justify-center p-10 bg-black/50 text-yellow-400">
-            <h1 className="text-4xl font-bold mb-4">HomeMeal</h1>
+            <Link to="/"> {/* ✅ Made clickable to go home */}
+              <h1 className="text-4xl font-bold mb-4 cursor-pointer hover:underline">
+                HomeMeal
+              </h1>
+            </Link>
             <h2 className="text-3xl font-semibold leading-snug text-white">
               Your kitchen. <br />
               Your table. <br />

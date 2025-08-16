@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
+    "axios": "^1.11.0",
     "chart.js": "^4.4.8",
     "framer-motion": "^12.6.2",
     "home-meal": "file:",
