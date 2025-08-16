@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Orders from "./components/Orders.jsx";
 import Navbar from './components/NavBar.jsx';
 import Footer from "./components/Footer";
-
+import Auth from "./components/Auth.jsx";   // ✅ Added import for Auth page
 
 function App() {
     return (
@@ -23,6 +23,7 @@ function App() {
                     <Route path="/ChefDashboard" element={<ChefDashboard />} />
                     <Route path="/ClientDashboardMain" element={<ClientDashboardMain />} />
                     <Route path="/DpDashboardMain" element={<DpDashboardMain />} />
+                    <Route path="/auth" element={<Auth />} />   {/* ✅ Added route for Auth page */}
                     <Route path="/dashboard" element={<Dashboard />}>
                         <Route path="orders" element={<Orders />} /> {/* Nested Route for Orders */}
                     </Route>

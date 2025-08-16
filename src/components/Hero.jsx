@@ -41,14 +41,14 @@ const Hero = () => {
         <div className="flex gap-6">
           <Link 
             className="px-6 py-3 bg-[#dfd218] text-black text-base font-medium rounded shadow-md tracking-tight transition duration-300 hover:bg-[#c4b417]" 
-            to="/Process"
+            to="/process"
           >
             Learn More
           </Link>
 
           <Link 
             className="px-6 py-3 bg-[#484206] text-white text-base font-medium rounded shadow-md flex items-center gap-3 transition duration-300 hover:bg-[#3b3404]" 
-            to="/download" 
+            to="/auth"   // ✅ Correct route
           >
             <img src="/images/ps-icon.png" alt="Download Icon" className="h-5 w-5" />
             Get Started
